@@ -1,0 +1,52 @@
+.todo_list {
+  border-bottom: 1px solid rgb(220, 220, 220);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.completionCheck {
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 1.3rem;
+  border: 1px solid grey;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+}
+
+.checkIcon {
+  width: 0.75rem;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.contents {
+  align-items: left;
+  width: 80%;
+}
+
+.title {
+  font-size: 1.1rem;
+  margin: 0;
+  text-align: left;
+}
+
+.dsc {
+  font-size: 1rem;
+  margin: 0.25rem 0 0 0;
+  text-align: left;
+}
+
+.handler a {
+  margin: 0 0.25rem;
+}
+
+.deleteIcon {
+  width: 0.75rem;
+  cursor: pointer;
+  color: grey;
+  margin: 0 0.5rem;
+}
