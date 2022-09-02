@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 
 import ToDo from "./ToDo";
+import TodoContext from "../store/todo-context";
+import InsertForm from "./InsertForm";
 
 import classes from "./ToDoList.module.css";
 
 const Todolist = () => {
+  const [dataChange, setDataChange] = useState(false);
   const [todo, setTodo] = useState([]);
 
   useEffect(() => {
@@ -25,25 +28,30 @@ const Todolist = () => {
       }
 
       setTodo(loadedTodo);
+      console.log("1");
     };
 
     fetchTodo();
-  }, [todo]);
+  }, [dataChange]);
 
+  console.log(dataChange);
   return (
-    <div className={classes.listContainer}>
-      <h3>오늘</h3>
-      <ul className={classes.list}>
-        {todo.map((todo) => (
-          <ToDo
-            id={todo.id}
-            key={todo.id}
-            title={todo.title}
-            description={todo.description}
-          />
-        ))}
-      </ul>
-    </div>
+    <TodoContext.Provider value={{ dataChange, setDataChange }}>
+      <div className={classes.listContainer}>
+        <h3>오늘</h3>
+        <ul className={classes.list}>
+          {todo.map((todo) => (
+            <ToDo
+              id={todo.id}
+              key={todo.id}
+              title={todo.title}
+              description={todo.description}
+            />
+          ))}
+        </ul>
+      </div>
+      <InsertForm />
+    </TodoContext.Provider>
   );
 };
 

@@ -1,13 +1,19 @@
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect, Fragment, useContext } from "react";
 
 import classes from "./InsertForm.module.css";
+import Button from "../UI/Button";
+import TodoContext from "../store/todo-context";
 
-const InsertForm = () => {
-  //   const titleInputRef = useRef();
-  //   const dscInputRef = useRef();
-
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredDsc, setEnteredDsc] = useState("");
+const InsertForm = (props) => {
+  const { dataChange, setDataChange } = useContext(TodoContext);
+  const isEditForm = props.isEditForm;
+  // const [isEditForm, setIsEditForm] = useState(props.isEditForm);
+  const [enteredTitle, setEnteredTitle] = useState(
+    isEditForm ? props.title : ""
+  );
+  const [enteredDsc, setEnteredDsc] = useState(
+    isEditForm ? props.description : ""
+  );
   const [formIsValid, setFormIsValid] = useState(false);
 
   const enteredTitleIsValid = enteredTitle.trim() !== "";
@@ -27,34 +33,88 @@ const InsertForm = () => {
   const dscChangeHandler = (event) => {
     setEnteredDsc(event.target.value);
   };
-
   const submitFormHandler = (event) => {
     event.preventDefault();
 
-    // const enteredTitle = titleInputRef.current.value;
-    // const enteredDsc = dscInputRef.current.value;
-
-    const data = { title: enteredTitle, description: enteredDsc };
+    const data = {
+      title: enteredTitle,
+      description: enteredDsc,
+      id: Date.now(),
+    };
 
     fetch("https://react-http-ea916-default-rtdb.firebaseio.com/todo.json", {
       method: "POST",
       body: JSON.stringify(data),
     });
 
-    // titleInputRef.current.value = "";
-    // dscInputRef.current.value = "";
+    setEnteredTitle("");
+    setEnteredDsc("");
+    setDataChange(!dataChange);
+  };
 
-    event.target.reset();
+  const editCancleHandler = (event) => {
+    event.preventDefault();
+    props.listForm(false);
+  };
+
+  const updateFormHandler = (event) => {
+    event.preventDefault();
+    const data = { title: enteredTitle, description: enteredDsc };
+
+    const Update = async () => {
+      await fetch(
+        "https://react-http-ea916-default-rtdb.firebaseio.com/todo/" +
+          props.id +
+          ".json",
+        {
+          method: "PUT",
+          body: JSON.stringify(data),
+        }
+      );
+      props.listForm(false);
+      setDataChange(!dataChange);
+    };
+    Update();
+  };
+
+  const EditFormBtns = () => {
+    return (
+      <Fragment>
+        <button className={classes.cancleBtn} onClick={editCancleHandler}>
+          취소
+        </button>
+        {formIsValid ? (
+          <Button>저장</Button>
+        ) : (
+          <Button disabled="disabled">저장</Button>
+        )}
+      </Fragment>
+    );
+  };
+
+  const SubmitFormBtn = () => {
+    return (
+      <Fragment>
+        {formIsValid ? (
+          <Button>할일 추가</Button>
+        ) : (
+          <Button disabled={"disabled"}>할일 추가</Button>
+        )}
+      </Fragment>
+    );
   };
 
   return (
-    <form className={classes.form} onSubmit={submitFormHandler}>
+    <form
+      className={classes.form}
+      onSubmit={isEditForm ? updateFormHandler : submitFormHandler}
+    >
       <div className={classes.control}>
         <input
           onChange={titleChangeHandler}
           className={classes.title}
           placeholder="할일"
-          //   ref={titleInputRef}
+          value={enteredTitle}
         />
         <textarea
           placeholder="설명"
@@ -62,16 +122,11 @@ const InsertForm = () => {
           className={classes.description}
           type="text"
           name="description"
-          //   ref={dscInputRef}
+          value={enteredDsc}
         />
       </div>
       <div className={classes.actions}>
-        {!formIsValid && (
-          <button className={classes.btn} disabled>
-            할일 추가
-          </button>
-        )}
-        {formIsValid && <button className={classes.btn}>할일 추가</button>}
+        {isEditForm ? <EditFormBtns /> : <SubmitFormBtn />}
       </div>
     </form>
   );

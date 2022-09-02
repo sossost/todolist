@@ -12,6 +12,7 @@
 .list {
   width: 600px;
   margin: 0 auto;
+  margin-bottom: 40px;
   padding: 0;
   box-sizing: border-box;
 }
