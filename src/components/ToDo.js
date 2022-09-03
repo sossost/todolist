@@ -9,6 +9,33 @@ const ToDo = (props) => {
   const [checkIcon, setCheckIcon] = useState();
   const [editForm, setEditForm] = useState(false);
 
+  const CompleteDoHandler = () => {
+    const data = {
+      title: props.title,
+      description: props.description,
+      id: props.id,
+      key: props.id,
+      date: props.date,
+    };
+
+    const moveToCompleted = async () => {
+      await fetch(
+        "https://react-http-ea916-default-rtdb.firebaseio.com/completed.json",
+        { method: "POST", body: JSON.stringify(data) }
+      );
+      await fetch(
+        "https://react-http-ea916-default-rtdb.firebaseio.com/todo/" +
+          props.id +
+          ".json",
+        { method: "DELETE" }
+      );
+
+      setDataChange(!dataChange);
+    };
+
+    moveToCompleted();
+  };
+
   const editFormHandler = (event) => {
     event.preventDefault();
     setEditForm(true);
@@ -22,7 +49,7 @@ const ToDo = (props) => {
       return;
     }
 
-    const Delete = async () => {
+    const DeleteTodo = async () => {
       await fetch(
         "https://react-http-ea916-default-rtdb.firebaseio.com/todo/" +
           props.id +
@@ -31,7 +58,7 @@ const ToDo = (props) => {
       );
       setDataChange(!dataChange);
     };
-    Delete();
+    DeleteTodo();
   };
 
   const listForm = (props) => {
@@ -44,6 +71,7 @@ const ToDo = (props) => {
         <Fragment>
           <div
             className={classes.completionCheck}
+            onClick={CompleteDoHandler}
             onMouseOver={() => {
               setCheckIcon(true);
             }}
@@ -70,7 +98,6 @@ const ToDo = (props) => {
               alt="editIcon"
               onClick={editFormHandler}
             />
-
             <img
               className={classes.deleteIcon}
               src="img/delete.png"
@@ -84,6 +111,7 @@ const ToDo = (props) => {
         <InsertForm
           title={props.title}
           description={props.description}
+          date={props.date}
           id={props.id}
           isEditForm={editForm}
           listForm={listForm}

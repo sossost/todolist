@@ -1,15 +1,22 @@
+import { useState } from "react";
 import Header from "./UI/Header";
-import { Fragment } from "react";
 import Todolist from "./components/ToDoList";
+import CompletedDoList from "./components/CompletedDoList";
+import TodoContext from "./store/todo-context";
+import InsertForm from "./components/InsertForm";
 
 function App() {
+  const [dataChange, setDataChange] = useState(false);
+
   return (
-    <Fragment>
+    <TodoContext.Provider value={{ dataChange, setDataChange }}>
       <Header />
       <main>
-        <Todolist />
+        <Todolist dataChange={dataChange} />
+        <InsertForm />
+        <CompletedDoList dataChange={dataChange} />
       </main>
-    </Fragment>
+    </TodoContext.Provider>
   );
 }
 

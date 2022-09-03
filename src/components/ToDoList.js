@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 import ToDo from "./ToDo";
-import TodoContext from "../store/todo-context";
-import InsertForm from "./InsertForm";
+import useDate from "../hooks/use-date";
 
 import classes from "./ToDoList.module.css";
 
-const Todolist = () => {
-  const [dataChange, setDataChange] = useState(false);
+const Todolist = (props) => {
   const [todo, setTodo] = useState([]);
+  const date = useDate();
 
   useEffect(() => {
     const fetchTodo = async () => {
@@ -24,34 +23,67 @@ const Todolist = () => {
           id: key,
           title: responseData[key].title,
           description: responseData[key].description,
+          date: responseData[key].date,
         });
       }
-
       setTodo(loadedTodo);
-      console.log("1");
     };
 
     fetchTodo();
-  }, [dataChange]);
+  }, [props.dataChange]);
 
-  console.log(dataChange);
-  return (
-    <TodoContext.Provider value={{ dataChange, setDataChange }}>
+  const today = new Date();
+  // const todayTodo = todo.filter((todo) => {
+  //   return todo.date < today;
+  // });
+
+  const todayTodo = todo.filter((todo) => {
+    return todo.date.substring(0, 11) === today.toLocaleDateString();
+  });
+  const pastTodo = todo.filter((todo) => {
+    return todo.date.substring(0, 11) < today.toLocaleDateString();
+  });
+
+  const noPastTodoList = pastTodo.length === 0;
+
+  const ListContainer = (props) => {
+    const isPastTodo = props.isPastTodo;
+
+    return (
       <div className={classes.listContainer}>
-        <h3>오늘</h3>
+        <h1 className={classes.listSubject}>
+          {!isPastTodo ? (
+            <Fragment>
+              <span>오늘 </span>
+              <small>
+                {date.monthName + date.dateNum + "일 " + date.dayName}
+              </small>{" "}
+            </Fragment>
+          ) : (
+            !noPastTodoList && <span>지난 할일</span>
+          )}
+        </h1>
+
         <ul className={classes.list}>
-          {todo.map((todo) => (
+          {(isPastTodo ? pastTodo : todayTodo).map((todo) => (
             <ToDo
               id={todo.id}
               key={todo.id}
               title={todo.title}
               description={todo.description}
+              date={todo.date}
             />
           ))}
         </ul>
       </div>
-      <InsertForm />
-    </TodoContext.Provider>
+    );
+  };
+
+  return (
+    <Fragment>
+      <ListContainer isPastTodo="true" />
+      <ListContainer />
+    </Fragment>
   );
 };
 
