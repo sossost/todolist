@@ -12,6 +12,14 @@
 
 .nav {
   width: 600px;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    width: 600px;
+  }
 }
 
 .logo {

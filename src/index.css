@@ -14,4 +14,15 @@ code {
 
 main {
   margin: 40px auto;
+  width: 600px;
+}
+
+@media (max-width: 768px) {
+  body {
+    width: 768px;
+  }
+
+  main {
+    width: 600px;
+  }
 }

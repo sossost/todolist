@@ -7,6 +7,7 @@ import TodoContext from "../store/todo-context";
 const InsertForm = (props) => {
   const { dataChange, setDataChange } = useContext(TodoContext);
   const isEditForm = props.isEditForm;
+
   const [enteredTitle, setEnteredTitle] = useState(
     isEditForm ? props.title : ""
   );
@@ -32,6 +33,7 @@ const InsertForm = (props) => {
   const dscChangeHandler = (event) => {
     setEnteredDsc(event.target.value);
   };
+
   const submitFormHandler = (event) => {
     event.preventDefault();
 

@@ -33,6 +33,8 @@
 .contents {
   align-items: left;
   padding-left: 1rem;
+  text-decoration: line-through;
+  color: rgb(175, 175, 175);
 }
 
 .title {
@@ -65,18 +67,5 @@
 }
 
 .deleteIcon:hover {
-  background-color: rgb(220, 220, 220);
-}
-
-.editIcon {
-  height: 1.1rem;
-  cursor: pointer;
-  color: grey;
-  margin: 0 0.25rem;
-  padding: 6px;
-  border-radius: 3px;
-}
-
-.editIcon:hover {
   background-color: rgb(220, 220, 220);
 }

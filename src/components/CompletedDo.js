@@ -1,7 +1,7 @@
 import { Fragment, useContext, useState } from "react";
 import TodoContext from "../store/todo-context";
 
-import classes from "./ToDo.module.css";
+import classes from "./CompletedDo.module.css";
 
 const CompletedDo = (props) => {
   const { dataChange, setDataChange } = useContext(TodoContext);

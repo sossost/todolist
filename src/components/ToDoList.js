@@ -50,7 +50,7 @@ const Todolist = (props) => {
     const isPastTodo = props.isPastTodo;
 
     return (
-      <div className={classes.listContainer}>
+      <Fragment>
         <h1 className={classes.listSubject}>
           {!isPastTodo ? (
             <Fragment>
@@ -75,15 +75,15 @@ const Todolist = (props) => {
             />
           ))}
         </ul>
-      </div>
+      </Fragment>
     );
   };
 
   return (
-    <Fragment>
-      <ListContainer isPastTodo="true" />
+    <div className={classes.listContainer}>
+      {!noPastTodoList && <ListContainer isPastTodo="true" />}
       <ListContainer />
-    </Fragment>
+    </div>
   );
 };
 
