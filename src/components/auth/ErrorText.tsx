@@ -9,7 +9,7 @@ const ErrorText = ({ children }: { children: ReactNode }) => {
       css={{
         fontSize: "12px",
         color: colors.error,
-        padding: "4px 15px",
+        padding: "4px 15px 0 15px",
       }}
     >
       {children}

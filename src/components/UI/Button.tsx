@@ -26,7 +26,6 @@ const Button = ({
         fontWeight: "600",
         lineHeight: "24px",
         borderRadius: "10px",
-
         transition: "all .4s ease",
         width: isFullWidth ? "100%" : "auto",
         cursor: disabled ? "not-allowed" : "pointer",
