@@ -3,9 +3,20 @@
 import { useNavigate } from "react-router-dom";
 import Logo from "../Logo";
 import Button from "../UI/Button";
+import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
+import { accessTokenState } from "../../store/recoilAtoms";
+import { toast } from "react-hot-toast";
 
 const Header = () => {
   const navigate = useNavigate();
+  const isLoggedin = useRecoilValue(accessTokenState);
+  const logout = useResetRecoilState(accessTokenState);
+
+  const handleLogout = () => {
+    logout();
+    toast.success("로그아웃 되었습니다.");
+    navigate("/signin");
+  };
 
   return (
     <div
@@ -30,20 +41,30 @@ const Header = () => {
           gap: 12,
         }}
       >
-        <Button
-          onClick={() => navigate("/signin")}
-          variant="textOnly"
-          size="small"
-        >
-          로그인
-        </Button>
-        <Button
-          onClick={() => navigate("/signup")}
-          variant="secondary"
-          size="small"
-        >
-          회원가입
-        </Button>
+        {isLoggedin ? (
+          <>
+            <Button onClick={handleLogout} variant="textOnly" size="small">
+              로그아웃
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button
+              onClick={() => navigate("/signin")}
+              variant="textOnly"
+              size="small"
+            >
+              로그인
+            </Button>
+            <Button
+              onClick={() => navigate("/signup")}
+              variant="secondary"
+              size="small"
+            >
+              회원가입
+            </Button>
+          </>
+        )}
       </div>
     </div>
   );
