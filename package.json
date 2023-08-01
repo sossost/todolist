@@ -1,6 +1,6 @@
 {
+  "homepage": ".",
   "name": "wanted-pre-onboarding-frontend",
-  "homepage":"https://wanted-pre-onboarding-frontend-512lefekx-sossost.vercel.app/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
