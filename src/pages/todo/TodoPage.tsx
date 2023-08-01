@@ -10,6 +10,7 @@ import TodoForm from "../../components/todo/TodoForm";
 import Line from "../../components/UI/Line";
 import { useRecoilState } from "recoil";
 import { todoListState } from "../../store/recoilAtoms";
+import { toast } from "react-hot-toast";
 
 const TodoPage = () => {
   const [todos, setTodos] = useRecoilState<Todo[]>(todoListState);
@@ -19,8 +20,11 @@ const TodoPage = () => {
       const todos = await getAllTodos();
       setTodos(todos);
     };
-
-    fetchTodos();
+    try {
+      fetchTodos();
+    } catch (error: any) {
+      toast.error(error.message);
+    }
   }, [setTodos]);
 
   return (

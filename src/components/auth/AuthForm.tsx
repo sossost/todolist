@@ -3,38 +3,43 @@
 import { ReactNode } from "react";
 import { colors } from "../../constants/color";
 
-const AuthForm = ({ children }: { children: ReactNode }) => {
+interface AuthFormProps {
+  children: ReactNode;
+  title: string;
+}
+
+const AuthForm = ({ children, title }: AuthFormProps) => {
   return (
     <div
       css={{
-        position: "relative",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
         width: "100%",
         height: "100%",
-        margin: "20px 0",
+        display: "flex",
       }}
     >
       <form
         css={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
           display: "flex",
           flexDirection: "column",
-          height: "100%",
-          width: "320px",
-          padding: "20px",
+          width: "360px",
+          padding: "40px",
+          borderRadius: "20px",
+          background: "rgba(255, 255, 255, 0.5)",
         }}
       >
         <h1
           css={{
             fontSize: "22px",
             color: colors.mainFont,
-            marginBottom: "20px",
+            marginBottom: "16px",
             width: "100%",
           }}
         >
-          회원가입
+          {title}
         </h1>
         {children}
       </form>
