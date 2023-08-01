@@ -72,8 +72,8 @@ const TYPE_VARIANTS = {
 
 const TYPE_SIZES = {
   small: {
-    fontSize: "14px",
-    padding: "5px 12px",
+    fontSize: "13px",
+    padding: "3px 9px",
   },
   medium: {
     fontSize: "16px",

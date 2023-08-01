@@ -43,7 +43,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
           alignItems: "center",
           overflow: "hidden",
           width: "calc(100% - 40px)",
-          maxWidth: "1000px",
+          maxWidth: "940px",
           height: "100%",
           minHeight: "90vh",
           margin: "0 auto",
@@ -51,13 +51,15 @@ const Layout = ({ children }: { children: ReactNode }) => {
           boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
           backdropFilter: "blur(5px)",
           borderRadius: "20px",
-          padding: "110px 30px 30px 30px",
+          padding: "100px 20px 20px 20px",
         }}
       >
         <Header />
         <main
           css={{
-            height: "100%",
+            position: "relative",
+            display: "flex",
+            flexGrow: 1,
             width: "100%",
           }}
         >
