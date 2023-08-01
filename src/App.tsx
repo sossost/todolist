@@ -9,7 +9,7 @@ import TodoPage from "./pages/todo/TodoPage";
 
 function App() {
   return (
-    <Router basename="https://wanted-pre-onboarding-frontend-git-refactoring-sossost.vercel.app/">
+    <Router basename="https://wanted-pre-onboarding-frontend-nu-eosin.vercel.app/">
       <RecoilRoot>
         <Layout>
           <ToastProvider />
