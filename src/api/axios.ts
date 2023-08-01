@@ -9,7 +9,7 @@ export const axiosBase = axios.create({
 
 axiosBase.interceptors.request.use((config: any): any => {
   const accessToken = JSON.parse(
-    localStorage.getItem("access_token") || ""
+    localStorage.getItem("access_token") || "{}"
   )?.access_token;
 
   if (accessToken) {
