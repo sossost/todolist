@@ -10,7 +10,7 @@ import TodoPage from "./pages/todo/TodoPage";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/index.html">
       <RecoilRoot>
         <Layout>
           <ToastProvider />
