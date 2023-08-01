@@ -47,31 +47,27 @@ const SigninPage = () => {
 
   return (
     <AuthForm title="로그인">
-      <Input>
-        <Input.TextFiled
-          id="email"
-          data-testid="email-input"
-          type="email"
-          placeholder="이메일을 입력해주세요."
-          error={!emailIsValid}
-          onChange={emailChangeHandler}
-          disabled={isLoading}
-        />
-      </Input>
+      <Input.TextFiled
+        id="email"
+        data-testid="email-input"
+        type="email"
+        placeholder="이메일을 입력해주세요."
+        error={!emailIsValid}
+        onChange={emailChangeHandler}
+        disabled={isLoading}
+      />
 
-      <Spacing size={4} direction="vertical" />
+      <Spacing size={10} direction="vertical" />
 
-      <Input>
-        <Input.TextFiled
-          id="password"
-          data-testid="password-input"
-          type="password"
-          placeholder="비밀번호를 입력해주세요."
-          error={!passwordIsValid}
-          onChange={passwordChangeHandler}
-          disabled={isLoading}
-        />
-      </Input>
+      <Input.TextFiled
+        id="password"
+        data-testid="password-input"
+        type="password"
+        placeholder="비밀번호를 입력해주세요."
+        error={!passwordIsValid}
+        onChange={passwordChangeHandler}
+        disabled={isLoading}
+      />
 
       <Spacing size={24} direction="vertical" />
 

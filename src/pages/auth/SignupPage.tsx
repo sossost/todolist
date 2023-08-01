@@ -43,12 +43,11 @@ const SignupPage = () => {
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    toast.success("회원가입이 완료되었습니다.");
     setIsLoading(true);
     const data = { email, password, passwordConfirm };
-    console.log(data);
     try {
       await signup(data);
+      toast.success("회원가입이 완료되었습니다.");
       navigate("/signin");
     } catch (error: any) {
       toast.error(error.response.data.message);
@@ -58,7 +57,7 @@ const SignupPage = () => {
   };
 
   return (
-    <AuthForm>
+    <AuthForm title="회원가입">
       <Input label="이메일">
         <Input.TextFiled
           id="email"
@@ -72,7 +71,7 @@ const SignupPage = () => {
       </Input>
       {!emailIsValid && <ErrorText>이메일 형식이 올바르지 않습니다.</ErrorText>}
 
-      <Spacing size={16} direction="vertical" />
+      <Spacing size={12} direction="vertical" />
 
       <Input label="비밀번호">
         <Input.TextFiled

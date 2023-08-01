@@ -2,10 +2,12 @@
 
 import {
   Children,
+  ForwardedRef,
   HTMLAttributes,
   InputHTMLAttributes,
   ReactElement,
   cloneElement,
+  forwardRef,
 } from "react";
 import uuid from "react-uuid";
 import { colors } from "../../constants/color";
@@ -33,9 +35,10 @@ const Input = ({ label, children, ...props }: InputProps) => {
       <label
         htmlFor={id}
         css={{
-          fontSize: "16px",
+          fontSize: "18px",
           fontWeight: 500,
           color: colors.mainFont,
+          paddingLeft: "4px",
         }}
       >
         {label}
@@ -54,25 +57,35 @@ interface TextFiledProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
 }
 
-Input.TextFiled = ({ error, ...props }: TextFiledProps) => {
-  return (
-    <input
-      css={{
-        boxSizing: "border-box",
-        border: "none",
-        outline: "none",
-        width: "100%",
-        padding: "12px 16px",
-        fontSize: "16px",
-        background: "rgba(255, 255, 255, 0.2)",
-        color: colors.mainFont,
-        borderRadius: "10px",
-        boxShadow: `inset 0 0 0 1px ${error ? colors.error : colors.secondary}`,
-        "&:focus": {
-          boxShadow: `inset 0 0 0 2px ${error ? colors.error : colors.primary}`,
-        },
-      }}
-      {...props}
-    />
-  );
-};
+Input.TextFiled = forwardRef(
+  (
+    { error, ...props }: TextFiledProps,
+    ref: ForwardedRef<HTMLInputElement>
+  ) => {
+    return (
+      <input
+        css={{
+          boxSizing: "border-box",
+          border: "none",
+          outline: "none",
+          width: "100%",
+          padding: "12px 16px",
+          fontSize: "16px",
+          background: "rgba(255, 255, 255, 0.2)",
+          color: colors.mainFont,
+          borderRadius: "10px",
+          boxShadow: `inset 0 0 0 1px ${
+            error ? colors.error : colors.secondary
+          }`,
+          "&:focus": {
+            boxShadow: `inset 0 0 0 2px ${
+              error ? colors.error : colors.primary
+            }`,
+          },
+        }}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
