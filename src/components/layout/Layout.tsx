@@ -3,8 +3,8 @@
 import { ReactNode, useEffect } from "react";
 import { colors } from "../../constants/color";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { accessTokenState } from "../../store/recoilAtoms";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { accessTokenState, todoListState } from "../../store/recoilAtoms";
 
 import Header from "./Header";
 
@@ -13,15 +13,25 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const pathname = location.pathname;
   const navigate = useNavigate();
   const isLoggedin = useRecoilValue(accessTokenState);
+  const setTodos = useSetRecoilState(todoListState);
 
   useEffect(() => {
+    // 로그인 상태에서는 로그인, 회원가입 페이지로 이동시 todo 페이지로 리다이렉트
     if (isLoggedin && ["/signup", "/signin", "/"].includes(pathname)) {
       navigate("/todo");
     }
+
+    // 로그인 상태가 아닐 때는 todo 페이지로 이동시 로그인 페이지로 리다이렉트
     if (!isLoggedin && ["/todo", "/"].includes(pathname)) {
       navigate("/signin");
     }
-  }, [pathname, isLoggedin, navigate]);
+
+    if (!isLoggedin) {
+      setTodos([]);
+    }
+
+    // 로그인 상태면 todo 데이터를 가져와서 todoListState에 저장
+  }, [pathname, isLoggedin, navigate, setTodos]);
 
   return (
     <div

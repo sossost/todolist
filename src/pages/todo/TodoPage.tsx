@@ -1,29 +1,29 @@
 /** @jsxImportSource @emotion/react */
 
-import { useEffect } from "react";
-import { getAllTodos } from "../../api/todo";
 import { Todo } from "../../types";
 
 import TodoList from "../../components/todo/TodoList";
 import TodoForm from "../../components/todo/TodoForm";
 import { useRecoilState } from "recoil";
 import { todoListState } from "../../store/recoilAtoms";
-import { toast } from "react-hot-toast";
 import { colors } from "../../constants/color";
+import { getAllTodos } from "../../api/todo";
+import { toast } from "react-hot-toast";
+import { useEffect } from "react";
 
 const TodoPage = () => {
   const [todos, setTodos] = useRecoilState<Todo[]>(todoListState);
 
   useEffect(() => {
     const fetchTodos = async () => {
-      const todos = await getAllTodos();
-      setTodos(todos);
+      try {
+        const todos = await getAllTodos();
+        setTodos(todos);
+      } catch (error: any) {
+        toast.error(error.message);
+      }
     };
-    try {
-      fetchTodos();
-    } catch (error: any) {
-      toast.error(error.message);
-    }
+    fetchTodos();
   }, [setTodos]);
 
   return (
