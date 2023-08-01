@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 
 import SignupPage from "./pages/auth/SignupPage";
@@ -9,7 +9,7 @@ import TodoPage from "./pages/todo/TodoPage";
 
 function App() {
   return (
-    <Router basename="/">
+    <Router>
       <RecoilRoot>
         <Layout>
           <ToastProvider />
