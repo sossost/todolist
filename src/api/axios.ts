@@ -1,10 +1,8 @@
 import axios from "axios";
 
-let accessToken = localStorage.getItem("access_token");
-
-if (accessToken !== null) {
-  accessToken = JSON.parse(accessToken);
-}
+const accessToken = JSON.parse(
+  localStorage.getItem("access_token") || "{}"
+)?.access_token;
 
 export const axiosBase = axios.create({
   baseURL: "https://www.pre-onboarding-selection-task.shop/",
