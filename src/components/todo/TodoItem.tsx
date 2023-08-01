@@ -43,6 +43,8 @@ const TodoItem = ({ id, todo, isCompleted, userId }: Todo) => {
       // TODO: 클라이언트 상태 업데이트
       const updatedTodos = updateClientTodos(prevTodos, id, newTodoData);
       setNewTodos(updatedTodos);
+
+      toast.success("수정되었습니다.");
     } catch (error: any) {
       toast.error(error.message);
     } finally {
@@ -63,6 +65,8 @@ const TodoItem = ({ id, todo, isCompleted, userId }: Todo) => {
       // TODO: 클라이언트 상태 업데이트
       const updatedTodos = deleteClientTodos(prevTodos, id);
       setNewTodos(updatedTodos);
+
+      toast.success("삭제되었습니다.");
     } catch (error: any) {
       toast.error(error.message);
     } finally {
