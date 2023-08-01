@@ -15,7 +15,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const isLoggedin = useRecoilValue(accessTokenState);
 
   useEffect(() => {
-    if (isLoggedin && ["/signup", "/signin"].includes(pathname)) {
+    if (isLoggedin && ["/signup", "/signin", "/"].includes(pathname)) {
       navigate("/todo");
     }
     if (!isLoggedin && ["/todo", "/"].includes(pathname)) {
