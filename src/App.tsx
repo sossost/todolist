@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 
 import SignupPage from "./pages/auth/SignupPage";
