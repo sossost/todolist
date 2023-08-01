@@ -9,7 +9,7 @@ import TodoPage from "./pages/todo/TodoPage";
 
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <RecoilRoot>
         <Layout>
           <ToastProvider />
