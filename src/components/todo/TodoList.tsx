@@ -8,6 +8,10 @@ const TodoList = ({ todos }: { todos: Todo[] }) => {
     <div
       css={{
         width: "100%",
+        background: "rgba(255, 255, 255, 0.5)",
+        padding: "20px",
+        borderRadius: "20px",
+        flexGrow: 1,
       }}
     >
       {todos.map((todo: Todo, index) => (

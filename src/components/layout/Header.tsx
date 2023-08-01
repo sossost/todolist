@@ -3,7 +3,7 @@
 import { useNavigate } from "react-router-dom";
 import Logo from "../Logo";
 import Button from "../UI/Button";
-import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
+import { useRecoilValue, useResetRecoilState } from "recoil";
 import { accessTokenState } from "../../store/recoilAtoms";
 import { toast } from "react-hot-toast";
 
@@ -43,7 +43,7 @@ const Header = () => {
       >
         {isLoggedin ? (
           <>
-            <Button onClick={handleLogout} variant="textOnly" size="small">
+            <Button onClick={handleLogout} variant="textOnly">
               로그아웃
             </Button>
           </>

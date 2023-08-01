@@ -52,6 +52,9 @@ const TodoForm = () => {
         alignItems: "end",
         gap: 12,
         width: "100%",
+        background: "rgba(255, 255, 255, 0.5)",
+        padding: "20px",
+        borderRadius: "20px",
       }}
     >
       <Input
@@ -59,6 +62,7 @@ const TodoForm = () => {
         css={{
           width: "auto",
           flexGrow: 1,
+          gap: 12,
         }}
       >
         <Input.TextFiled
@@ -66,13 +70,17 @@ const TodoForm = () => {
           data-testid="new-todo-input"
           placeholder="할 일을 입력해주세요."
           ref={todoRef}
+          css={{
+            height: "36px",
+          }}
         />
       </Input>
       <Button
         onClick={handleSubmit}
         type="submit"
         disabled={isLoading}
-        css={{ width: "111px" }}
+        size="small"
+        css={{ height: "36px", width: "95px" }}
       >
         추가
       </Button>
