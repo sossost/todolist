@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 
-import HomePage from "./pages/HomePage";
 import SignupPage from "./pages/auth/SignupPage";
 import Layout from "./components/layout/Layout";
 import SigninPage from "./pages/auth/SigninPage";
@@ -10,7 +9,7 @@ import TodoPage from "./pages/todo/TodoPage";
 
 function App() {
   return (
-    <Router basename="/">
+    <Router>
       <RecoilRoot>
         <Layout>
           <ToastProvider />
