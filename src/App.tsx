@@ -15,7 +15,7 @@ function App() {
         <Layout>
           <ToastProvider />
           <Routes>
-            <Route path="/" Component={HomePage} />
+            <Route path="/" Component={SigninPage} />
             <Route path="/signup" Component={SignupPage} />
             <Route path="/signin" Component={SigninPage} />
             <Route path="/todo" Component={TodoPage} />
