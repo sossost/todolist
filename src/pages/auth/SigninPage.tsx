@@ -23,15 +23,21 @@ const SigninPage = () => {
     isValid: passwordIsValid,
     handleChange: passwordChangeHandler,
   } = useRegexValidation({ regex: passwordRegex });
-  const navigate = useNavigate();
-  const setAccessToken = useSetRecoilState(accessTokenState);
+  const isValid =
+    emailIsValid &&
+    passwordIsValid &&
+    email.trim().length !== 0 &&
+    password.trim().length !== 0;
 
+  const navigate = useNavigate();
+
+  const setAccessToken = useSetRecoilState(accessTokenState);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const data = { email, password };
     setIsLoading(true);
+    const data = { email, password };
     try {
       const response = await signin(data);
       const accessToken = response.data.access_token;
@@ -39,7 +45,7 @@ const SigninPage = () => {
       toast.success("로그인에 성공하였습니다.");
       navigate("/todo");
     } catch (error: any) {
-      toast.error(error.response.data.message);
+      toast.error("이메일 또는 비밀번호가 일치하지 않습니다.");
     } finally {
       setIsLoading(false);
     }
@@ -75,7 +81,7 @@ const SigninPage = () => {
         onClick={handleSubmit}
         data-testid="signin-button"
         isFullWidth
-        disabled={isLoading}
+        disabled={isLoading || !isValid}
       >
         로그인
       </Button>
