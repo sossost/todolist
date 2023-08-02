@@ -23,11 +23,12 @@ const TodoItem = ({ id, todo, isCompleted, userId }: Todo) => {
   const [prevTodos, setNewTodos] = useRecoilState(todoListState);
 
   const handleEditTodo = async () => {
-    setIsLoading(true);
     if (newTodo.trim().length === 0) {
       toast.error("할 일을 입력해주세요.");
       return;
     }
+
+    setIsLoading(true);
 
     const newTodoData = {
       id,
@@ -54,10 +55,11 @@ const TodoItem = ({ id, todo, isCompleted, userId }: Todo) => {
   };
 
   const handleDeleteTodo = async () => {
-    setIsLoading(true);
     if (!window.confirm("정말 삭제하시겠습니까?")) {
       return;
     }
+    setIsLoading(true);
+
     try {
       // TODO: deleteTodo API 호출
       await deleteTodo(id);

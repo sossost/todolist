@@ -26,11 +26,12 @@ const Layout = ({ children }: { children: ReactNode }) => {
       navigate("/signin");
     }
 
+    // 로그인 상태가 아니면 클라이언트 투두리스트 초기화
     if (!isLoggedin) {
       setTodos([]);
     }
 
-    // 로그인 상태면 todo 데이터를 가져와서 todoListState에 저장
+   
   }, [pathname, isLoggedin, navigate, setTodos]);
 
   return (

@@ -3,5 +3,5 @@ export const colors = {
   secondary: "#C9ADF2",
   tertiary: "#855FB2",
   mainFont: "#644C80",
-  error: "#D92360",
+  error: "#FF3434",
 };
