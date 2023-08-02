@@ -77,7 +77,7 @@ const TodoForm = () => {
       </Input>
       <Button
         onClick={handleSubmit}
-        type="submit"
+        data-testid="new-todo-add-button"
         disabled={isLoading}
         size="small"
         css={{ height: "36px", width: "95px" }}
