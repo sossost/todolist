@@ -4,14 +4,20 @@ import { ReactNode, useEffect } from "react";
 import { colors } from "../../constants/color";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { accessTokenState, todoListState } from "../../store/recoilAtoms";
+import {
+  accessTokenState,
+  loadingState,
+  todoListState,
+} from "../../store/recoilAtoms";
 
 import Header from "./Header";
+import Loading from "../UI/Loading";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const location = useLocation();
   const pathname = location.pathname;
   const navigate = useNavigate();
+  const isLoading = useRecoilValue(loadingState);
   const isLoggedin = useRecoilValue(accessTokenState);
   const setTodos = useSetRecoilState(todoListState);
 
@@ -30,8 +36,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
     if (!isLoggedin) {
       setTodos([]);
     }
-
-   
   }, [pathname, isLoggedin, navigate, setTodos]);
 
   return (
@@ -65,6 +69,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
           padding: "100px 20px 20px 20px",
         }}
       >
+        {isLoading && <Loading />}
         <Header />
         <main
           css={{

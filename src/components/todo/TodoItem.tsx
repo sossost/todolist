@@ -6,7 +6,7 @@ import { colors } from "../../constants/color";
 import { toast } from "react-hot-toast";
 import { deleteTodo, updateTodo } from "../../api/todo";
 import { useRecoilState } from "recoil";
-import { todoListState } from "../../store/recoilAtoms";
+import { loadingState, todoListState } from "../../store/recoilAtoms";
 
 import Button from "../UI/Button";
 import EditInput from "./EditInput";
@@ -16,7 +16,7 @@ import {
 } from "../../utils/clientSideTodoManage";
 
 const TodoItem = ({ id, todo, isCompleted, userId }: Todo) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useRecoilState(loadingState);
   const [isEditting, setIsEditting] = useState(false);
   const [checked, setChecked] = useState(isCompleted);
   const [newTodo, setNewTodo] = useState(todo);
