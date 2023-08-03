@@ -1,20 +1,19 @@
 /** @jsxImportSource @emotion/react */
 
 import { useNavigate } from "react-router-dom";
-import { useRecoilValue, useResetRecoilState } from "recoil";
-import { accessTokenState } from "../../store/recoilAtoms";
 import { toast } from "react-hot-toast";
 
 import Logo from "../Logo";
 import Button from "../UI/Button";
+import { useContext } from "react";
+import { AuthContext } from "../../store/authContext";
 
 const Header = () => {
   const navigate = useNavigate();
-  const isLoggedin = useRecoilValue(accessTokenState);
-  const logout = useResetRecoilState(accessTokenState);
+  const { token: isLoggedin, setToken: logout } = useContext(AuthContext);
 
   const handleLogout = () => {
-    logout();
+    logout("");
     toast.success("로그아웃 되었습니다.");
     navigate("/signin");
   };
