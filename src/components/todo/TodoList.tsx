@@ -2,6 +2,7 @@
 
 import TodoItem from "./TodoItem";
 import { Todo } from "../../types";
+import { colors } from "../../constants/color";
 
 const TodoList = ({ todos }: { todos: Todo[] }) => {
   return (
@@ -23,6 +24,21 @@ const TodoList = ({ todos }: { todos: Todo[] }) => {
           userId={todo.userId}
         />
       ))}
+      {todos.length === 0 && (
+        <div
+          css={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+            fontSize: "18px",
+            fontWeight: 500,
+            color: colors.mainFont,
+          }}
+        >
+          작성된 할일이 없습니다.
+        </div>
+      )}
     </div>
   );
 };

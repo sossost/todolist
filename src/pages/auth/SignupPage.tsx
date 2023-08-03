@@ -44,7 +44,7 @@ const SignupPage = () => {
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    const data = { email, password, passwordConfirm };
+    const data = { email, password };
     try {
       await signup(data);
       toast.success("회원가입이 완료되었습니다.");
