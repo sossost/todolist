@@ -1,26 +1,26 @@
 /** @jsxImportSource @emotion/react */
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Todo } from "../../types";
 import { colors } from "../../constants/color";
 import { toast } from "react-hot-toast";
 import { deleteTodo, updateTodo } from "../../api/todo";
-import { useRecoilState } from "recoil";
-import { loadingState, todoListState } from "../../store/recoilAtoms";
-
-import Button from "../UI/Button";
-import EditInput from "./EditInput";
 import {
   deleteClientTodos,
   updateClientTodos,
 } from "../../utils/clientSideTodoManage";
+import { LoadingContext } from "../../store/loadingContext";
+import { TodoContext } from "../../store/todoContext";
+
+import Button from "../UI/Button";
+import EditInput from "./EditInput";
 
 const TodoItem = ({ id, todo, isCompleted, userId }: Todo) => {
-  const [isLoading, setIsLoading] = useRecoilState(loadingState);
   const [isEditting, setIsEditting] = useState(false);
   const [checked, setChecked] = useState(isCompleted);
   const [newTodo, setNewTodo] = useState(todo);
-  const [prevTodos, setNewTodos] = useRecoilState(todoListState);
+  const { isLoading, setIsLoading } = useContext(LoadingContext);
+  const { todos: prevTodos, setTodos: setNewTodos } = useContext(TodoContext);
 
   const handleEditTodo = async () => {
     if (newTodo.trim().length === 0) {

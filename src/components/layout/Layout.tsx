@@ -1,42 +1,39 @@
 /** @jsxImportSource @emotion/react */
 
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useContext, useEffect } from "react";
 import { colors } from "../../constants/color";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import {
-  accessTokenState,
-  loadingState,
-  todoListState,
-} from "../../store/recoilAtoms";
 
 import Header from "./Header";
 import Loading from "../UI/Loading";
+import { AuthContext } from "../../store/authContext";
+import { LoadingContext } from "../../store/loadingContext";
+import { TodoContext } from "../../store/todoContext";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const location = useLocation();
   const pathname = location.pathname;
   const navigate = useNavigate();
-  const isLoading = useRecoilValue(loadingState);
-  const isLoggedin = useRecoilValue(accessTokenState);
-  const setTodos = useSetRecoilState(todoListState);
+  const { isLoading } = useContext(LoadingContext);
+  const { token } = useContext(AuthContext);
+  const { setTodos } = useContext(TodoContext);
 
   useEffect(() => {
     // 로그인 상태에서는 로그인, 회원가입 페이지로 이동시 todo 페이지로 리다이렉트
-    if (isLoggedin && ["/signup", "/signin", "/"].includes(pathname)) {
+    if (token && ["/signup", "/signin", "/"].includes(pathname)) {
       navigate("/todo");
     }
 
     // 로그인 상태가 아닐 때는 todo 페이지로 이동시 로그인 페이지로 리다이렉트
-    if (!isLoggedin && ["/todo", "/"].includes(pathname)) {
+    if (!token && ["/todo", "/"].includes(pathname)) {
       navigate("/signin");
     }
 
     // 로그인 상태가 아니면 클라이언트 투두리스트 초기화
-    if (!isLoggedin) {
+    if (!token) {
       setTodos([]);
     }
-  }, [pathname, isLoggedin, navigate, setTodos]);
+  }, [pathname, token, navigate, setTodos]);
 
   return (
     <div
