@@ -8,7 +8,7 @@ interface LineProps {
   spacing?: number;
 }
 
-const Line = ({ direction, spacing }: LineProps) => {
+const Line = ({ direction, spacing, ...props }: LineProps) => {
   const TYPE_DIRECTION = {
     horizontal: {
       borderBottom: `1px solid ${colors.secondary}`,
@@ -26,6 +26,7 @@ const Line = ({ direction, spacing }: LineProps) => {
         flex: "none",
         ...TYPE_DIRECTION[direction],
       }}
+      {...props}
     />
   );
 };

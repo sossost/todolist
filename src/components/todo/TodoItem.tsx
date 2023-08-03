@@ -87,7 +87,7 @@ const TodoItem = ({ id, todo, isCompleted, userId }: Todo) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: "8px 0",
+        padding: "4px 0",
         gap: 12,
       }}
     >
@@ -116,12 +116,12 @@ const TodoItem = ({ id, todo, isCompleted, userId }: Todo) => {
             css={{
               boxSizing: "content-box",
               textDecoration: checked ? "line-through" : "none",
-              fontSize: "17px",
+              fontSize: "16px",
               width: "100%",
               flexGrow: 1,
               fontWeight: 500,
-              lineHeight: "17px",
-              padding: "8px 10px",
+              lineHeight: "16px",
+              padding: "8.3px 10px",
               color: colors.mainFont,
             }}
           >
@@ -158,7 +158,7 @@ const TodoItem = ({ id, todo, isCompleted, userId }: Todo) => {
         ) : (
           <>
             <Button
-              variant="secondary"
+              variant="textOnly"
               size="small"
               data-testid="modify-button"
               onClick={() => setIsEditting(true)}
@@ -166,7 +166,7 @@ const TodoItem = ({ id, todo, isCompleted, userId }: Todo) => {
               수정
             </Button>
             <Button
-              variant="secondary"
+              variant="textOnly"
               size="small"
               data-testid="delete-button"
               onClick={handleDeleteTodo}
