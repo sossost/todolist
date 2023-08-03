@@ -3,14 +3,14 @@ import useRegexValidation from "../../hooks/useRegexValidation";
 import { signup } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import { useRecoilState } from "recoil";
-import { loadingState } from "../../store/recoilAtoms";
 
 import Button from "../../components/UI/Button";
 import Input from "../../components/UI/Input";
 import Spacing from "../../components/UI/Spacing";
 import AuthForm from "../../components/auth/AuthForm";
 import ErrorText from "../../components/auth/ErrorText";
+import { useContext } from "react";
+import { LoadingContext } from "../../store/loadingContext";
 
 const SignupPage = () => {
   const {
@@ -40,7 +40,7 @@ const SignupPage = () => {
     passwordConfirm.trim().length !== 0;
   const navigate = useNavigate();
 
-  const [isLoading, setIsLoading] = useRecoilState(loadingState);
+  const { isLoading, setIsLoading } = useContext(LoadingContext);
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();

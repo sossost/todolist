@@ -1,19 +1,25 @@
 import { BrowserRouter as Router } from "react-router-dom";
-import { RecoilRoot } from "recoil";
-
-import Layout from "./components/layout/Layout";
-import ToastProvider from "./context/toastProvider";
 import { AppRoutes } from "./routes";
+
+import ToastProvider from "./context/toastProvider";
+import TodoContextProvider from "./store/todoContext";
+import LoadingContexProvider from "./store/loadingContext";
+import AuthContexProvider from "./store/authContext";
+import Layout from "./components/layout/Layout";
 
 function App() {
   return (
     <Router>
-      <RecoilRoot>
-        <Layout>
-          <ToastProvider />
-          <AppRoutes />
-        </Layout>
-      </RecoilRoot>
+      <AuthContexProvider>
+        <TodoContextProvider>
+          <LoadingContexProvider>
+            <Layout>
+              <ToastProvider />
+              <AppRoutes />
+            </Layout>
+          </LoadingContexProvider>
+        </TodoContextProvider>
+      </AuthContexProvider>
     </Router>
   );
 }

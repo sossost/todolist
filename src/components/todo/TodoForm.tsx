@@ -1,19 +1,19 @@
 /** @jsxImportSource @emotion/react */
 
-import { useRef, useState } from "react";
+import { useContext, useRef } from "react";
 import { createTodo } from "../../api/todo";
 import { toast } from "react-hot-toast";
 import { addClientTodos } from "../../utils/clientSideTodoManage";
-import { useRecoilState } from "recoil";
-import { loadingState, todoListState } from "../../store/recoilAtoms";
 
 import Input from "../../components/UI/Input";
 import Button from "../../components/UI/Button";
+import { LoadingContext } from "../../store/loadingContext";
+import { TodoContext } from "../../store/todoContext";
 
 const TodoForm = () => {
   const todoRef = useRef<HTMLInputElement>(null);
-  const [prevTodos, setNewTodos] = useRecoilState(todoListState);
-  const [isLoading, setIsLoading] = useRecoilState(loadingState);
+  const { todos: prevTodos, setTodos: setNewTodos } = useContext(TodoContext);
+  const { isLoading, setIsLoading } = useContext(LoadingContext);
 
   const handleSubmit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>

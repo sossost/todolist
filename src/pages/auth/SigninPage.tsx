@@ -3,13 +3,14 @@ import useRegexValidation from "../../hooks/useRegexValidation";
 import { signin } from "../../api/auth";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { accessTokenState, loadingState } from "../../store/recoilAtoms";
 
 import Button from "../../components/UI/Button";
 import Input from "../../components/UI/Input";
 import Spacing from "../../components/UI/Spacing";
 import AuthForm from "../../components/auth/AuthForm";
+import { useContext } from "react";
+import { AuthContext } from "../../store/authContext";
+import { LoadingContext } from "../../store/loadingContext";
 
 const SigninPage = () => {
   const {
@@ -30,8 +31,8 @@ const SigninPage = () => {
 
   const navigate = useNavigate();
 
-  const setAccessToken = useSetRecoilState(accessTokenState);
-  const [isLoading, setIsLoading] = useRecoilState(loadingState);
+  const { setToken } = useContext(AuthContext);
+  const { isLoading, setIsLoading } = useContext(LoadingContext);
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -40,7 +41,7 @@ const SigninPage = () => {
     try {
       const response = await signin(data);
       const accessToken = response.data.access_token;
-      setAccessToken(accessToken);
+      setToken(accessToken);
       toast.success("로그인에 성공하였습니다.");
       navigate("/todo");
     } catch (error: any) {
