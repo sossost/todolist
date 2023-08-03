@@ -31,7 +31,7 @@ const SigninPage = () => {
 
   const navigate = useNavigate();
 
-  const { setToken } = useContext(AuthContext);
+  const { setTokenInLocalStorage } = useContext(AuthContext);
   const { isLoading, setIsLoading } = useContext(LoadingContext);
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -41,7 +41,7 @@ const SigninPage = () => {
     try {
       const response = await signin(data);
       const accessToken = response.data.access_token;
-      setToken(accessToken);
+      setTokenInLocalStorage(accessToken);
       toast.success("로그인에 성공하였습니다.");
       navigate("/todo");
     } catch (error: any) {

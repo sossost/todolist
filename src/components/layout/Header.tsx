@@ -10,10 +10,11 @@ import { AuthContext } from "../../store/authContext";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { token: isLoggedin, setToken: logout } = useContext(AuthContext);
+  const { token: isLoggedin, removeTokenInLocalStorage } =
+    useContext(AuthContext);
 
   const handleLogout = () => {
-    logout("");
+    removeTokenInLocalStorage();
     toast.success("로그아웃 되었습니다.");
     navigate("/signin");
   };
