@@ -12,7 +12,6 @@ const Loading = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backdropFilter: "blur(50px)",
       }}
     >
       <div
