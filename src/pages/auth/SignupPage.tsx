@@ -1,9 +1,10 @@
 import { emailRegex, passwordRegex } from "../../constants/regex";
 import useRegexValidation from "../../hooks/useRegexValidation";
-import { useState } from "react";
 import { signup } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { useRecoilState } from "recoil";
+import { loadingState } from "../../store/recoilAtoms";
 
 import Button from "../../components/UI/Button";
 import Input from "../../components/UI/Input";
@@ -39,7 +40,7 @@ const SignupPage = () => {
     passwordConfirm.trim().length !== 0;
   const navigate = useNavigate();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useRecoilState(loadingState);
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();

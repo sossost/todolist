@@ -17,3 +17,8 @@ export const todoListState = atom<Todo[]>({
   key: "todoListState",
   default: [],
 });
+
+export const loadingState = atom<boolean>({
+  key: "loadingState",
+  default: false,
+});

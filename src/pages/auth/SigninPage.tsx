@@ -1,11 +1,10 @@
-import { useState } from "react";
 import { emailRegex, passwordRegex } from "../../constants/regex";
 import useRegexValidation from "../../hooks/useRegexValidation";
 import { signin } from "../../api/auth";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import { accessTokenState } from "../../store/recoilAtoms";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { accessTokenState, loadingState } from "../../store/recoilAtoms";
 
 import Button from "../../components/UI/Button";
 import Input from "../../components/UI/Input";
@@ -32,7 +31,7 @@ const SigninPage = () => {
   const navigate = useNavigate();
 
   const setAccessToken = useSetRecoilState(accessTokenState);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useRecoilState(loadingState);
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();

@@ -5,7 +5,7 @@ import { createTodo } from "../../api/todo";
 import { toast } from "react-hot-toast";
 import { addClientTodos } from "../../utils/clientSideTodoManage";
 import { useRecoilState } from "recoil";
-import { todoListState } from "../../store/recoilAtoms";
+import { loadingState, todoListState } from "../../store/recoilAtoms";
 
 import Input from "../../components/UI/Input";
 import Button from "../../components/UI/Button";
@@ -13,7 +13,7 @@ import Button from "../../components/UI/Button";
 const TodoForm = () => {
   const todoRef = useRef<HTMLInputElement>(null);
   const [prevTodos, setNewTodos] = useRecoilState(todoListState);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useRecoilState(loadingState);
 
   const handleSubmit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
