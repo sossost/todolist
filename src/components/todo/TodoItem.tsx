@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { useContext, useState } from "react";
+import styled from "@emotion/styled";
 import { Todo } from "../../types";
 import { colors } from "../../constants/color";
 import { toast } from "react-hot-toast";
@@ -82,23 +83,8 @@ const TodoItem = ({ id, todo, isCompleted, userId }: Todo) => {
   };
 
   return (
-    <li
-      css={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "4px 0",
-        gap: 12,
-      }}
-    >
-      <label
-        css={{
-          display: "flex",
-          alignItems: "center",
-          flex: 1,
-          gap: 5,
-        }}
-      >
+    <TodoItemContainer>
+      <TodoItemWrapper>
         <input
           type="checkbox"
           checked={checked}
@@ -112,29 +98,10 @@ const TodoItem = ({ id, todo, isCompleted, userId }: Todo) => {
             onChange={(e) => setNewTodo(e.target.value)}
           />
         ) : (
-          <span
-            css={{
-              boxSizing: "content-box",
-              textDecoration: checked ? "line-through" : "none",
-              fontSize: "16px",
-              width: "100%",
-              flexGrow: 1,
-              fontWeight: 500,
-              lineHeight: "16px",
-              padding: "8.3px 10px",
-              color: colors.mainFont,
-            }}
-          >
-            {todo}
-          </span>
+          <TodoItemText>{todo}</TodoItemText>
         )}
-      </label>
-      <div
-        css={{
-          display: "flex",
-          gap: 8,
-        }}
-      >
+      </TodoItemWrapper>
+      <ButtonWrapper>
         {isEditting ? (
           <>
             <Button
@@ -176,9 +143,40 @@ const TodoItem = ({ id, todo, isCompleted, userId }: Todo) => {
             </Button>
           </>
         )}
-      </div>
-    </li>
+      </ButtonWrapper>
+    </TodoItemContainer>
   );
 };
 
 export default TodoItem;
+
+const TodoItemContainer = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0;
+  gap: 12px;
+`;
+
+const TodoItemWrapper = styled.label`
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 5px;
+`;
+
+const TodoItemText = styled.span`
+  box-sizing: content-box;
+  font-size: 16px;
+  width: 100%;
+  flex-grow: 1;
+  font-weight: 500;
+  line-height: 16px;
+  padding: 8.3px 10px;
+  color: ${colors.mainFont};
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 8px;
+`;

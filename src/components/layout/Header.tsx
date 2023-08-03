@@ -1,12 +1,13 @@
 /** @jsxImportSource @emotion/react */
 
 import { useNavigate } from "react-router-dom";
+import styled from "@emotion/styled";
 import { toast } from "react-hot-toast";
+import { useContext } from "react";
+import { AuthContext } from "../../store/authContext";
 
 import Logo from "../Logo";
 import Button from "../UI/Button";
-import { useContext } from "react";
-import { AuthContext } from "../../store/authContext";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -20,55 +21,52 @@ const Header = () => {
   };
 
   return (
-    <div
-      css={{
-        position: "absolute",
-        top: 0,
-        boxSizing: "border-box",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        width: "100%",
-        margin: "0 auto",
-        height: 80,
-        background: "rgba(255, 255, 255, 0.5)",
-        padding: "0 30px",
-      }}
-    >
+    <HeaderContainer>
       <Logo onClick={() => navigate("/")} />
-      <div
-        css={{
-          display: "flex",
-          gap: 12,
-        }}
-      >
-        {isLoggedin ? (
-          <>
-            <Button onClick={handleLogout} variant="textOnly">
-              로그아웃
-            </Button>
-          </>
-        ) : (
-          <>
-            <Button
-              onClick={() => navigate("/signin")}
-              variant="textOnly"
-              size="small"
-            >
-              로그인
-            </Button>
-            <Button
-              onClick={() => navigate("/signup")}
-              variant="secondary"
-              size="small"
-            >
-              회원가입
-            </Button>
-          </>
-        )}
-      </div>
-    </div>
+
+      {isLoggedin ? (
+        <Button onClick={handleLogout} variant="textOnly">
+          로그아웃
+        </Button>
+      ) : (
+        <ButtonWrapper>
+          <Button
+            onClick={() => navigate("/signin")}
+            variant="textOnly"
+            size="small"
+          >
+            로그인
+          </Button>
+          <Button
+            onClick={() => navigate("/signup")}
+            variant="secondary"
+            size="small"
+          >
+            회원가입
+          </Button>
+        </ButtonWrapper>
+      )}
+    </HeaderContainer>
   );
 };
 
 export default Header;
+
+const HeaderContainer = styled.div`
+  position: absolute;
+  top: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 0 30px;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 12px;
+`;
