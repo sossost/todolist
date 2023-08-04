@@ -1,13 +1,14 @@
 /** @jsxImportSource @emotion/react */
 
-import { colors } from "../../constants/color";
 import { getAllTodos } from "../../api/todo";
 import { toast } from "react-hot-toast";
 import { useContext, useEffect } from "react";
 import { TodoContext } from "../../store/todoContext";
+import styled from "@emotion/styled";
 
 import TodoList from "../../components/todo/TodoList";
 import TodoForm from "../../components/todo/TodoForm";
+import CenterMessage from "../../components/CenterMessage";
 
 const TodoPage = () => {
   const { todos, setTodos } = useContext(TodoContext);
@@ -25,68 +26,53 @@ const TodoPage = () => {
   }, [setTodos]);
 
   return (
-    <div
-      css={{
-        padding: "30px",
-        display: "flex",
-        width: "100%",
-        flexGrow: 1,
-        gap: 30,
-      }}
-    >
-      <div
-        css={{
-          display: "flex",
-          flexDirection: "column",
-          width: "100%",
-          flexGrow: 1,
-          maxWidth: "450px",
-          borderRadius: "20px",
-          gap: 30,
-        }}
-      >
+    <Layout>
+      <LeftSection>
         <TodoForm />
         <TodoList todos={todos} />
-      </div>
-      <div
-        css={{
-          display: "flex",
-          flexDirection: "column",
-          width: "100%",
-          flexGrow: 1,
-          maxWidth: "450px",
-          borderRadius: "20px",
-          gap: 20,
-        }}
-      >
-        <div
-          css={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-            flexGrow: 1,
-            maxWidth: "450px",
-            gap: 20,
-            background: "rgba(255, 255, 255, 0.5)",
-            padding: "30px",
-            borderRadius: "20px",
-          }}
-        >
-          <div
-            css={{
-              fontSize: "20px",
-              fontWeight: 500,
-              color: colors.mainFont,
-            }}
-          >
-            오픈준비중
-          </div>
-        </div>
-      </div>
-    </div>
+      </LeftSection>
+      <RightSection>
+        <ContentWrapper>
+          <CenterMessage message="오픈준비중" />
+        </ContentWrapper>
+      </RightSection>
+    </Layout>
   );
 };
 
 export default TodoPage;
+
+const Layout = styled.div`
+  padding: 30px;
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+  gap: 30px;
+`;
+
+const LeftSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex-grow: 1;
+  max-width: 450px;
+  border-radius: 20px;
+  gap: 30px;
+`;
+
+const RightSection = styled(LeftSection)``;
+
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%,
+  height: 100%;
+  flex-grow: 1;
+  max-width: 450px;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 30px;
+  border-radius: 20px;
+`;
