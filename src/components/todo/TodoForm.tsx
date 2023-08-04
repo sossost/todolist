@@ -19,7 +19,6 @@ const TodoForm = () => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    setIsLoading(true);
 
     const inputValue = todoRef.current!.value;
 
@@ -27,6 +26,8 @@ const TodoForm = () => {
       toast.error("할 일을 입력해주세요.");
       return;
     }
+
+    setIsLoading(true);
 
     try {
       // TODO: createTodo API 호출
