@@ -22,7 +22,7 @@ const TodoForm = () => {
 
     const inputValue = todoRef.current!.value;
 
-    if (!inputValue) {
+    if (inputValue.trim().length === 0) {
       toast.error("할 일을 입력해주세요.");
       return;
     }
