@@ -6,10 +6,6 @@ import { Todo } from "../../types";
 import { colors } from "../../constants/color";
 import { toast } from "react-hot-toast";
 import { deleteTodo, updateTodo } from "../../api/todo";
-import {
-  deleteClientTodos,
-  updateClientTodos,
-} from "../../utils/clientSideTodoManage";
 import { LoadingContext } from "../../store/loadingContext";
 import { TodoContext } from "../../store/todoContext";
 
@@ -20,15 +16,18 @@ const TodoItem = ({ id, todo, isCompleted, userId }: Todo) => {
   const [isEditting, setIsEditting] = useState(false);
   const [newTodo, setNewTodo] = useState(todo);
   const { isLoading, setIsLoading } = useContext(LoadingContext);
-  const { todos: prevTodos, setTodos: setNewTodos } = useContext(TodoContext);
+  const {
+    todos: prevTodos,
+    updateClientTodos,
+    deleteClientTodos,
+  } = useContext(TodoContext);
 
   const handleCompleteTodo = async () => {
     setIsLoading(true);
     const newTodoData = { id, todo, isCompleted: !isCompleted, userId };
     try {
       await updateTodo(newTodoData);
-      const updatedTodos = updateClientTodos(prevTodos, id, newTodoData);
-      setNewTodos(updatedTodos);
+      updateClientTodos(prevTodos, id, newTodoData);
     } catch (error: any) {
       toast.error(error.message);
     } finally {
@@ -56,8 +55,7 @@ const TodoItem = ({ id, todo, isCompleted, userId }: Todo) => {
       await updateTodo(newTodoData);
 
       // TODO: 클라이언트 상태 업데이트
-      const updatedTodos = updateClientTodos(prevTodos, id, newTodoData);
-      setNewTodos(updatedTodos);
+      updateClientTodos(prevTodos, id, newTodoData);
 
       toast.success("수정되었습니다.");
     } catch (error: any) {
@@ -79,8 +77,7 @@ const TodoItem = ({ id, todo, isCompleted, userId }: Todo) => {
       await deleteTodo(id);
 
       // TODO: 클라이언트 상태 업데이트
-      const updatedTodos = deleteClientTodos(prevTodos, id);
-      setNewTodos(updatedTodos);
+      deleteClientTodos(prevTodos, id);
 
       toast.success("삭제되었습니다.");
     } catch (error: any) {
@@ -204,6 +201,7 @@ const Checkbox = styled.span`
 const CheckIcon = styled.img`
   width: 100%;
   height: 100%;
+  filter: opacity(0.7);
 `;
 
 const TodoItemText = styled.span`
