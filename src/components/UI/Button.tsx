@@ -28,7 +28,7 @@ const Button = ({
         transition: "all .4s ease",
         width: isFullWidth ? "100%" : "auto",
         cursor: disabled ? "not-allowed" : "pointer",
-        filter: disabled ? "opacity(0.7)" : "none",
+        filter: disabled ? "opacity(0.5)" : "none",
         ...TYPE_VARIANTS[variant],
         ...TYPE_SIZES[size],
       }}

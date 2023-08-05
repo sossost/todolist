@@ -27,12 +27,13 @@ const AuthForm = ({ children, title }: AuthFormProps) => {
           display: flex;
           flex-direction: column;
           width: 100%;
+          max-width: 450px
           padding: 30px;
           border-radius: 20px;
           background: rgba(255, 255, 255, 0.5);
           @media (min-width: 768px) {
             width: 100%;
-            max-width: 450px;
+            max-width: 360px;
             padding: 40px;
             top: 50%;
             left: 50%;

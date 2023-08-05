@@ -99,8 +99,9 @@ const TodoItem = ({ id, todo, isCompleted, userId }: Todo) => {
           type="checkbox"
           checked={isCompleted}
           onChange={handleCompleteTodo}
+          disabled={isEditting}
         />
-        <Checkbox checked={isCompleted}>
+        <Checkbox checked={isCompleted} isEditting={isEditting}>
           {isCompleted && <CheckIcon src="/checkIcon.png" alt="check_icon" />}
         </Checkbox>
         {isEditting ? (
@@ -177,11 +178,6 @@ const TodoItemWrapper = styled.label`
   flex: 1;
   gap: 5px;
   cursor: pointer;
-  @media (min-width: 768px) {
-    &:hover {
-      filter: opacity(0.5);
-    }
-  }
 `;
 
 const CheckBoxInput = styled.input`
@@ -191,7 +187,7 @@ const CheckBoxInput = styled.input`
   height: 0;
 `;
 
-const Checkbox = styled.span`
+const Checkbox = styled.span<{ isEditting: boolean; checked: boolean }>`
   margin-top: 3px;
   height: 18px;
   aspect-ratio: 1;
@@ -200,7 +196,9 @@ const Checkbox = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ checked }: { checked: boolean }) =>
+  cursor: ${({ isEditting }) => (isEditting ? "not-allowed" : "pointer")};
+  filter: ${({ isEditting }) => (isEditting ? "opacity(0.5)" : "none")};
+  background-color: ${({ checked }) =>
     checked ? colors.primary : "transparent"}};
 `;
 
@@ -221,6 +219,11 @@ const TodoItemText = styled.span`
   color: ${colors.mainFont};
   text-decoration: ${({ checked }: { checked: boolean }) =>
     checked ? "line-through" : "none"};
+  @media (min-width: 768px) {
+    &:hover {
+      filter: opacity(0.5);
+    }
+  }
 `;
 
 const ButtonWrapper = styled.div`
