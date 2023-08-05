@@ -7,8 +7,9 @@ const Logo = ({ onClick }: { onClick: () => void }) => {
     <div
       css={{
         fontSize: 24,
-        fontWeight: "700",
+        fontWeight: "600",
         cursor: "pointer",
+        letterSpacing: -1,
         color: colors.primary,
       }}
       onClick={onClick}

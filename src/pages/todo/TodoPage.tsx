@@ -10,9 +10,11 @@ import TodoList from "../../components/todo/TodoList";
 import TodoForm from "../../components/todo/TodoForm";
 import Music from "../../components/music/Music";
 import Photo from "../../components/photo/Photo";
+import { AuthContext } from "../../store/authContext";
 
 const TodoPage = () => {
   const { todos, setTodos } = useContext(TodoContext);
+  const { token } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -23,8 +25,10 @@ const TodoPage = () => {
         toast.error(error.message);
       }
     };
-    fetchTodos();
-  }, [setTodos]);
+    if (token) {
+      fetchTodos();
+    }
+  }, [setTodos, token]);
 
   return (
     <Layout>
@@ -43,21 +47,40 @@ const TodoPage = () => {
 export default TodoPage;
 
 const Layout = styled.div`
-  padding: 30px;
+  padding: 0;
   display: flex;
   width: 100%;
   flex-grow: 1;
   gap: 30px;
+  justify-content: center;
+  @media (min-width: 768px) {
+    padding: 30px;
+  }
 `;
 
 const LeftSection = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 450px;
   width: 100%;
   flex-grow: 1;
-  max-width: 450px;
   border-radius: 20px;
-  gap: 30px;
+  gap: 20px;
+  @media (min-width: 768px) {
+    width: 100%;
+    gap: 30px;
+  }
 `;
 
-const RightSection = styled(LeftSection)``;
+const RightSection = styled.div`
+  display: none;
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+    max-width: 450px;
+    border-radius: 20px;
+    gap: 30px;
+  }
+`;
