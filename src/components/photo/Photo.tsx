@@ -29,7 +29,7 @@ const WallpaperWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: end;
-    width: 100%,
+    width: 100%;
     height: 100%;
     flex-grow: 1;
     max-width: 450px;
@@ -37,5 +37,5 @@ const WallpaperWrapper = styled.div`
     background: rgba(255, 255, 255, 0.5);
     border-radius: 20px;
     overflow: hidden;
-  };
+  }
 `;

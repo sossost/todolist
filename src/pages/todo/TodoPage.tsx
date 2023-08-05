@@ -49,7 +49,7 @@ export default TodoPage;
 const Layout = styled.div`
   padding: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   width: 100%;
   flex-grow: 1;
   gap: 20px;
@@ -66,17 +66,33 @@ const Layout = styled.div`
 
 const LeftSection = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
+  justify-content: start;
   max-width: 450px;
   width: 100%;
   height: 100%;
   flex-grow: 1;
   border-radius: 20px;
   gap: 20px;
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     width: 100%;
     gap: 30px;
+    flex-direction: column;
   }
 `;
 
-const RightSection = styled(LeftSection)``;
+const RightSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+  width: 100%;
+  height: auto;
+  flex-grow: 1;
+  border-radius: 20px;
+  gap: 20px;
+  @media (min-width: 1024px) {
+    width: 100%;
+    gap: 30px;
+    height: 100%;
+  }
+`;
