@@ -2,6 +2,7 @@
 
 import { ReactNode } from "react";
 import { colors } from "../../constants/color";
+import { css } from "@emotion/react";
 
 interface AuthFormProps {
   children: ReactNode;
@@ -18,22 +19,27 @@ const AuthForm = ({ children, title }: AuthFormProps) => {
       }}
     >
       <form
-        css={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          display: "flex",
-          flexDirection: "column",
-          width: "360px",
-          padding: "40px",
-          borderRadius: "20px",
-          background: "rgba(255, 255, 255, 0.5)",
-        }}
+        css={css`
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -55%);
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          padding: 30px;
+          border-radius: 20px;
+          background: rgba(255, 255, 255, 0.5);
+          @media (min-width: 768px) {
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
+          }
+        `}
       >
         <h1
           css={{
-            fontSize: "22px",
+            fontSize: "19px",
             color: colors.mainFont,
             marginBottom: "16px",
             width: "100%",

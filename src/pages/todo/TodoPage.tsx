@@ -43,24 +43,42 @@ const TodoPage = () => {
 export default TodoPage;
 
 const Layout = styled.div`
-  padding: 30px;
+  padding: 0;
   display: flex;
   width: 100%;
   flex-grow: 1;
   gap: 30px;
+  justify-content: center;
+  @media (min-width: 768px) {
+    padding: 30px;
+  }
 `;
 
 const LeftSection = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 450px;
   width: 100%;
   flex-grow: 1;
-  max-width: 450px;
   border-radius: 20px;
   gap: 30px;
+  @media (min-width: 768px) {
+    width: 100%;
+  }
 `;
 
-const RightSection = styled(LeftSection)``;
+const RightSection = styled.div`
+  display: none;
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+    max-width: 450px;
+    border-radius: 20px;
+    gap: 30px;
+  }
+`;
 
 const ContentWrapper = styled.div`
   display: flex;

@@ -53,9 +53,13 @@ const BackgroundLayer = styled.div`
   width: 100%;
   min-height: 100vh;
   margin: 0 auto;
-  padding: 40px 0;
+  padding: 25px 0;
   border: 1px solid #ccc;
   background: linear-gradient(0, ${colors.primary}, #fc949d);
+
+  @media (min-width: 768px) {
+    padding: 40px 0;
+  }
 `;
 
 const LayoutContainer = styled.div`

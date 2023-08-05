@@ -23,7 +23,6 @@ const Button = ({
       css={{
         fontFamily: "inherit",
         outline: "none",
-        fontWeight: "600",
         lineHeight: "24px",
         borderRadius: "10px",
         transition: "all .4s ease",
@@ -74,13 +73,16 @@ const TYPE_SIZES = {
   small: {
     fontSize: "13px",
     padding: "3px 9px",
+    fontWeight: "500",
   },
   medium: {
     fontSize: "16px",
     padding: "8px 16px",
+    fontWeight: "600",
   },
   large: {
     fontSize: "20px",
     padding: "10px 20px",
+    fontWeight: "700",
   },
 };

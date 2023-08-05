@@ -176,6 +176,10 @@ const TodoItemWrapper = styled.label`
   align-items: center;
   flex: 1;
   gap: 5px;
+  cursor: pointer;
+  &:hover {
+    filter: opacity(0.5);
+  }
 `;
 
 const CheckBoxInput = styled.input`

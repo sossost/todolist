@@ -25,7 +25,7 @@ const Header = () => {
       <Logo onClick={() => navigate("/")} />
 
       {isLoggedin ? (
-        <Button onClick={handleLogout} variant="textOnly">
+        <Button onClick={handleLogout} variant="secondary" size="small">
           로그아웃
         </Button>
       ) : (
@@ -39,7 +39,7 @@ const Header = () => {
           </Button>
           <Button
             onClick={() => navigate("/signup")}
-            variant="secondary"
+            variant="primary"
             size="small"
           >
             회원가입
@@ -63,7 +63,11 @@ const HeaderContainer = styled.div`
   margin: 0 auto;
   height: 80px;
   background: rgba(255, 255, 255, 0.5);
-  padding: 0 30px;
+  padding: 0 20px;
+
+  @media (min-width: 768px) {
+    padding: 0 30px;
+  }
 `;
 
 const ButtonWrapper = styled.div`
