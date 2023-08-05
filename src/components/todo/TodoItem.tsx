@@ -177,8 +177,10 @@ const TodoItemWrapper = styled.label`
   flex: 1;
   gap: 5px;
   cursor: pointer;
-  &:hover {
-    filter: opacity(0.5);
+  @media (min-width: 768px) {
+    &:hover {
+      filter: opacity(0.5);
+    }
   }
 `;
 

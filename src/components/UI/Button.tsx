@@ -46,25 +46,31 @@ const TYPE_VARIANTS = {
     border: `1px solid ${colors.primary}`,
     backgroundColor: colors.primary,
     color: "white",
-    "&:hover": {
-      backgroundColor: colors.tertiary,
+    "@media (min-width: 768px)": {
+      "&:hover": {
+        backgroundColor: colors.tertiary,
+      },
     },
   },
   secondary: {
     border: `1px solid ${colors.primary}`,
     backgroundColor: "transparent",
     color: colors.primary,
-    "&:hover": {
-      backgroundColor: colors.primary,
-      color: "white",
+    "@media (min-width: 768px)": {
+      "&:hover": {
+        backgroundColor: colors.primary,
+        color: "white",
+      },
     },
   },
   textOnly: {
     border: "1px solid transparent",
     backgroundColor: "transparent",
     color: colors.primary,
-    "&:hover": {
-      border: `1px solid ${colors.primary}`,
+    "@media (min-width: 768px)": {
+      "&:hover": {
+        border: `1px solid ${colors.primary}`,
+      },
     },
   },
 };
