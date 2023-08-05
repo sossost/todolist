@@ -61,9 +61,10 @@ const LeftSection = styled.div`
   width: 100%;
   flex-grow: 1;
   border-radius: 20px;
-  gap: 30px;
+  gap: 20px;
   @media (min-width: 768px) {
     width: 100%;
+    gap: 30px;
   }
 `;
 
