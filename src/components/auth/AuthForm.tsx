@@ -21,7 +21,7 @@ const AuthForm = ({ children, title }: AuthFormProps) => {
       <form
         css={css`
           position: absolute;
-          top: 50%;
+          top: 40%;
           left: 50%;
           transform: translate(-50%, -55%);
           display: flex;
@@ -34,6 +34,9 @@ const AuthForm = ({ children, title }: AuthFormProps) => {
             width: 100%;
             max-width: 450px;
             padding: 40px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -55%);
           }
         `}
       >
