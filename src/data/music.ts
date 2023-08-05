@@ -27,18 +27,4 @@ export const MUSICS = [
     source: "https://www.youtube.com/@Fukane",
     songUrl: "/musics/dawn-and-firefly.mp3",
   },
-  {
-    id: "5",
-    title: "Deep Indigo (piano ver)",
-    artist: "Yorushika",
-    source: "https://www.youtube.com/@Fukane",
-    songUrl: "/musics/deep-indigo.mp3",
-  },
-  {
-    id: "6",
-    title: "Say It (piano ver)",
-    artist: "Yorushika",
-    source: "https://www.youtube.com/@Fukane",
-    songUrl: "/musics/say-it.mp3",
-  },
 ];
