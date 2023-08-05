@@ -10,7 +10,7 @@ const CenterMessage = ({ message }: { message: string }) => {
         justifyContent: "center",
         alignItems: "center",
         height: "100%",
-        fontSize: "18px",
+        fontSize: "17px",
         fontWeight: 500,
         color: colors.mainFont,
       }}

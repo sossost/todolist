@@ -35,6 +35,7 @@ const ListContainer = styled.div`
   background: rgba(255, 255, 255, 0.5);
   padding: 15px 20px;
   border-radius: 20px;
+  min-height: 360px;
   @media (min-width: 768px) {
     flex-grow: 1;
   }
