@@ -25,13 +25,20 @@ export const MUSICS = [
     title: "Dawn and Firefly (piano ver)",
     artist: "n-buna",
     source: "https://www.youtube.com/@Fukane",
-    songUrl: "/musics/left-right-confusion.mp3",
+    songUrl: "/musics/dawn-and-firefly.mp3",
   },
   {
     id: "5",
     title: "Deep Indigo (piano ver)",
     artist: "Yorushika",
     source: "https://www.youtube.com/@Fukane",
-    songUrl: "/musics/left-right-confusion.mp3",
+    songUrl: "/musics/deep-indigo.mp3",
+  },
+  {
+    id: "6",
+    title: "Say It (piano ver)",
+    artist: "Yorushika",
+    source: "https://www.youtube.com/@Fukane",
+    songUrl: "/musics/say-it.mp3",
   },
 ];
