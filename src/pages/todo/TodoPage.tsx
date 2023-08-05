@@ -8,7 +8,8 @@ import styled from "@emotion/styled";
 
 import TodoList from "../../components/todo/TodoList";
 import TodoForm from "../../components/todo/TodoForm";
-import CenterMessage from "../../components/CenterMessage";
+import Music from "../../components/music/Music";
+import Photo from "../../components/photo/Photo";
 
 const TodoPage = () => {
   const { todos, setTodos } = useContext(TodoContext);
@@ -32,9 +33,8 @@ const TodoPage = () => {
         <TodoList todos={todos} />
       </LeftSection>
       <RightSection>
-        <ContentWrapper>
-          <CenterMessage message="오픈준비중" />
-        </ContentWrapper>
+        <Photo />
+        <Music />
       </RightSection>
     </Layout>
   );
@@ -61,18 +61,3 @@ const LeftSection = styled.div`
 `;
 
 const RightSection = styled(LeftSection)``;
-
-const ContentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%,
-  height: 100%;
-  flex-grow: 1;
-  max-width: 450px;
-  gap: 20px;
-  background: rgba(255, 255, 255, 0.5);
-  padding: 30px;
-  border-radius: 20px;
-`;

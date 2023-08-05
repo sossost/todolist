@@ -4,3 +4,11 @@ export interface Todo {
   todo: string;
   userId: number;
 }
+
+export interface Song {
+  id: string;
+  title: string;
+  artist: string;
+  source: string;
+  songUrl: string;
+}
