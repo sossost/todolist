@@ -168,8 +168,8 @@ const TodoItemContainer = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 4px 0;
   gap: 12px;
+  height: 40px;
 `;
 
 const TodoItemWrapper = styled.label`
