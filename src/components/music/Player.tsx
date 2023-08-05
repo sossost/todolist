@@ -122,6 +122,7 @@ const Player = () => {
             "&:hover": {
               color: colors.secondary,
             },
+            transition: "color 0.2s ease-in-out",
           }}
           size={30}
         />
@@ -191,6 +192,7 @@ const ControlIconStyle = {
   "&:hover": {
     color: colors.secondary,
   },
+  transition: "color 0.2s ease-in-out",
 };
 
 const PlayButtonWrapper = styled.div`
@@ -203,6 +205,10 @@ const PlayButtonWrapper = styled.div`
   background-color: ${colors.primary};
   padding: 4px;
   cursor: pointer;
+  &:hover {
+    background-color: ${colors.secondary};
+  }
+  transition: background-color 0.2s ease-in-out;
 `;
 
 const VolumeSliderContainer = styled.div`
