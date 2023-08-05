@@ -9,9 +9,11 @@ import styled from "@emotion/styled";
 import TodoList from "../../components/todo/TodoList";
 import TodoForm from "../../components/todo/TodoForm";
 import CenterMessage from "../../components/CenterMessage";
+import { AuthContext } from "../../store/authContext";
 
 const TodoPage = () => {
   const { todos, setTodos } = useContext(TodoContext);
+  const { token } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -22,8 +24,10 @@ const TodoPage = () => {
         toast.error(error.message);
       }
     };
-    fetchTodos();
-  }, [setTodos]);
+    if (token) {
+      fetchTodos();
+    }
+  }, [setTodos, token]);
 
   return (
     <Layout>
