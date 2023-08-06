@@ -13,39 +13,29 @@ import { useContext } from "react";
 import { LoadingContext } from "../../store/loadingContext";
 
 const SignupPage = () => {
-  const {
-    input: email,
-    isValid: emailIsValid,
-    handleChange: emailChangeHandler,
-  } = useRegexValidation({ regex: emailRegex });
-  const {
-    input: password,
-    isValid: passwordIsValid,
-    handleChange: passwordChangeHandler,
-  } = useRegexValidation({ regex: passwordRegex });
-  const {
-    input: passwordConfirm,
-    isValid: passwordConfirmIsValid,
-    handleChange: passwordConfirmChangeHandler,
-  } = useRegexValidation({
+  const email = useRegexValidation({ regex: emailRegex });
+  const password = useRegexValidation({ regex: passwordRegex });
+  const passwordConfirm = useRegexValidation({
     regex: passwordRegex,
-    password,
+    password: password.value,
   });
-  const isValid =
-    emailIsValid &&
-    passwordIsValid &&
-    passwordConfirmIsValid &&
-    email.trim().length !== 0 &&
-    password.trim().length !== 0 &&
-    passwordConfirm.trim().length !== 0;
+  const isFormValid =
+    email.isValid &&
+    password.isValid &&
+    passwordConfirm.isValid &&
+    email.value.trim().length !== 0 &&
+    password.value.trim().length !== 0 &&
+    passwordConfirm.value.trim().length !== 0;
   const navigate = useNavigate();
 
   const { isLoading, setIsLoading } = useContext(LoadingContext);
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    if (!isFormValid) return;
+
     setIsLoading(true);
-    const data = { email, password };
+    const data = { email: email.value, password: password.value };
     try {
       await signup(data);
       toast.success("회원가입이 완료되었습니다.");
@@ -65,12 +55,14 @@ const SignupPage = () => {
           data-testid="email-input"
           type="email"
           placeholder="이메일을 입력해주세요."
-          error={!emailIsValid}
-          onChange={emailChangeHandler}
+          error={!email.isValid}
+          onChange={email.handleChange}
           disabled={isLoading}
         />
       </Input>
-      {!emailIsValid && <ErrorText>이메일 형식이 올바르지 않습니다.</ErrorText>}
+      {!email.isValid && (
+        <ErrorText>이메일 형식이 올바르지 않습니다.</ErrorText>
+      )}
 
       <Spacing size={12} direction="vertical" />
 
@@ -80,12 +72,12 @@ const SignupPage = () => {
           data-testid="password-input"
           type="password"
           placeholder="비밀번호를 입력해주세요."
-          error={!passwordIsValid}
-          onChange={passwordChangeHandler}
+          error={!password.isValid}
+          onChange={password.handleChange}
           disabled={isLoading}
         />
       </Input>
-      {!passwordIsValid && (
+      {!password.isValid && (
         <ErrorText>비밀번호는 8자 이상 입력해주세요.</ErrorText>
       )}
       <Input>
@@ -93,12 +85,12 @@ const SignupPage = () => {
           id="password_confirm"
           type="password"
           placeholder="비밀번호를 한번더 입력해주세요."
-          error={!passwordConfirmIsValid}
-          onChange={passwordConfirmChangeHandler}
+          error={!passwordConfirm.isValid}
+          onChange={passwordConfirm.handleChange}
           disabled={isLoading}
         />
       </Input>
-      {!passwordConfirmIsValid && (
+      {!passwordConfirm.isValid && (
         <ErrorText>비밀번호가 일치하지 않습니다.</ErrorText>
       )}
 
@@ -108,7 +100,7 @@ const SignupPage = () => {
         onClick={handleSubmit}
         data-testid="signup-button"
         isFullWidth
-        disabled={!isValid || isLoading}
+        disabled={isLoading || !isFormValid}
       >
         회원가입
       </Button>

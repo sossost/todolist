@@ -6,7 +6,7 @@ interface UseRegexValidationProps {
 }
 
 interface UseRegexValidationReturn {
-  input: string;
+  value: string;
   isValid: boolean;
   handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
@@ -15,7 +15,7 @@ const useRegexValidation = ({
   regex,
   password,
 }: UseRegexValidationProps): UseRegexValidationReturn => {
-  const [input, setInput] = useState("");
+  const [value, setValue] = useState("");
   const [isValid, setIsValid] = useState(true);
 
   const validate = (value: string) => {
@@ -25,12 +25,12 @@ const useRegexValidation = ({
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
+    setValue(e.target.value);
     validate(e.target.value);
   };
 
   return {
-    input,
+    value,
     isValid,
     handleChange,
   };
