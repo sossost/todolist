@@ -13,7 +13,7 @@ const TodoList = ({ todos }: { todos: Todo[] }) => {
         <ul>
           {todos.map((todo: Todo, index) => (
             <TodoItem
-              key={index}
+              key={todo.id}
               id={todo.id}
               todo={todo.todo}
               isCompleted={todo.isCompleted}
