@@ -33,7 +33,10 @@ export default TodoList;
 const ListContainer = styled.div`
   width: 100%;
   background: rgba(255, 255, 255, 0.5);
-  padding: 20px;
+  padding: 15px 20px;
   border-radius: 20px;
-  flex-grow: 1;
+  min-height: 360px;
+  @media (min-width: 768px) {
+    flex-grow: 1;
+  }
 `;

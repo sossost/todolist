@@ -23,13 +23,12 @@ const Button = ({
       css={{
         fontFamily: "inherit",
         outline: "none",
-        fontWeight: "600",
         lineHeight: "24px",
         borderRadius: "10px",
         transition: "all .4s ease",
         width: isFullWidth ? "100%" : "auto",
         cursor: disabled ? "not-allowed" : "pointer",
-        filter: disabled ? "opacity(0.7)" : "none",
+        filter: disabled ? "opacity(0.5)" : "none",
         ...TYPE_VARIANTS[variant],
         ...TYPE_SIZES[size],
       }}
@@ -47,25 +46,31 @@ const TYPE_VARIANTS = {
     border: `1px solid ${colors.primary}`,
     backgroundColor: colors.primary,
     color: "white",
-    "&:hover": {
-      backgroundColor: colors.tertiary,
+    "@media (min-width: 768px)": {
+      "&:hover": {
+        backgroundColor: colors.tertiary,
+      },
     },
   },
   secondary: {
     border: `1px solid ${colors.primary}`,
     backgroundColor: "transparent",
     color: colors.primary,
-    "&:hover": {
-      backgroundColor: colors.primary,
-      color: "white",
+    "@media (min-width: 768px)": {
+      "&:hover": {
+        backgroundColor: colors.primary,
+        color: "white",
+      },
     },
   },
   textOnly: {
     border: "1px solid transparent",
     backgroundColor: "transparent",
     color: colors.primary,
-    "&:hover": {
-      border: `1px solid ${colors.primary}`,
+    "@media (min-width: 768px)": {
+      "&:hover": {
+        border: `1px solid ${colors.primary}`,
+      },
     },
   },
 };
@@ -74,13 +79,16 @@ const TYPE_SIZES = {
   small: {
     fontSize: "13px",
     padding: "3px 9px",
+    fontWeight: "500",
   },
   medium: {
     fontSize: "16px",
     padding: "8px 16px",
+    fontWeight: "600",
   },
   large: {
     fontSize: "20px",
     padding: "10px 20px",
+    fontWeight: "700",
   },
 };

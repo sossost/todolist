@@ -3,7 +3,6 @@
 import { useContext, useRef } from "react";
 import { createTodo } from "../../api/todo";
 import { toast } from "react-hot-toast";
-import { addClientTodos } from "../../utils/clientSideTodoManage";
 
 import Input from "../../components/UI/Input";
 import Button from "../../components/UI/Button";
@@ -12,7 +11,7 @@ import { TodoContext } from "../../store/todoContext";
 
 const TodoForm = () => {
   const todoRef = useRef<HTMLInputElement>(null);
-  const { todos: prevTodos, setTodos: setNewTodos } = useContext(TodoContext);
+  const { todos: prevTodos, addClientTodos } = useContext(TodoContext);
   const { isLoading, setIsLoading } = useContext(LoadingContext);
 
   const handleSubmit = async (
@@ -24,6 +23,7 @@ const TodoForm = () => {
 
     if (inputValue.trim().length === 0) {
       toast.error("할 일을 입력해주세요.");
+      todoRef.current!.focus();
       return;
     }
 
@@ -34,8 +34,7 @@ const TodoForm = () => {
       const newTodo = await createTodo(inputValue);
 
       // TODO: 클라이언트 상태 업데이트
-      const updatedTodo = addClientTodos(prevTodos, newTodo);
-      setNewTodos(updatedTodo);
+      addClientTodos(prevTodos, newTodo);
 
       todoRef.current!.value = "";
       toast.success("할 일이 추가되었습니다.");

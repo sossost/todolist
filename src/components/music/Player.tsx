@@ -122,6 +122,7 @@ const Player = () => {
             "&:hover": {
               color: colors.secondary,
             },
+            transition: "color 0.2s ease-in-out",
           }}
           size={30}
         />
@@ -135,10 +136,13 @@ export default Player;
 
 const PlayerContentContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 2fr 1fr;
   gap: 20px;
   height: 100%;
   width: 100%;
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 const TextSliderContainer = styled.div`
@@ -179,17 +183,23 @@ const MusicMetaText = styled.span`
 const PlayerButtonsContainer = styled.div`
   display: flex;
   width: 100%;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   height: 100%;
   gap: 10px;
+  @media (min-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 const ControlIconStyle = {
   color: colors.primary,
   cursor: "pointer",
-  "&:hover": {
-    color: colors.secondary,
+  "@media (min-width: 1024px)": {
+    "&:hover": {
+      color: colors.secondary,
+    },
+    transition: "color 0.2s ease-in-out",
   },
 };
 
@@ -203,11 +213,21 @@ const PlayButtonWrapper = styled.div`
   background-color: ${colors.primary};
   padding: 4px;
   cursor: pointer;
+  @media (min-width: 1024px) {
+    &:hover {
+      background-color: ${colors.secondary};
+    }
+    transition: background-color 0.2s ease-in-out;
+  }
 `;
 
 const VolumeSliderContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 100px;
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100px;
+  }
 `;

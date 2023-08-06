@@ -53,9 +53,13 @@ const BackgroundLayer = styled.div`
   width: 100%;
   min-height: 100vh;
   margin: 0 auto;
-  padding: 40px 0;
+  padding: 25px 0;
   border: 1px solid #ccc;
   background: linear-gradient(0, ${colors.primary}, #fc949d);
+
+  @media (min-width: 768px) {
+    padding: 40px 0;
+  }
 `;
 
 const LayoutContainer = styled.div`
@@ -68,13 +72,16 @@ const LayoutContainer = styled.div`
   width: calc(100% - 40px);
   max-width: 940px;
   height: 100%;
-  min-height: 90vh;
+  min-height: calc(100vh - 50px);
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.4);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(5px);
   border-radius: 20px;
   padding: 100px 20px 20px 20px;
+  @media (min-width: 768px) {
+    min-height: calc(100vh - 80px);
+  }
 `;
 
 const Main = styled.main`

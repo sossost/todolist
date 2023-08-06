@@ -35,7 +35,7 @@ const Input = ({ label, children, ...props }: InputProps) => {
       <label
         htmlFor={id}
         css={{
-          fontSize: "18px",
+          fontSize: "17px",
           fontWeight: 500,
           color: colors.mainFont,
           paddingLeft: "4px",
