@@ -13,21 +13,13 @@ import { AuthContext } from "../../store/authContext";
 import { LoadingContext } from "../../store/loadingContext";
 
 const SigninPage = () => {
-  const {
-    input: email,
-    isValid: emailIsValid,
-    handleChange: emailChangeHandler,
-  } = useRegexValidation({ regex: emailRegex });
-  const {
-    input: password,
-    isValid: passwordIsValid,
-    handleChange: passwordChangeHandler,
-  } = useRegexValidation({ regex: passwordRegex });
-  const isValid =
-    emailIsValid &&
-    passwordIsValid &&
-    email.trim().length !== 0 &&
-    password.trim().length !== 0;
+  const email = useRegexValidation({ regex: emailRegex });
+  const password = useRegexValidation({ regex: passwordRegex });
+  const isFormValid =
+    email.isValid &&
+    email.value.trim().length !== 0 &&
+    password.isValid &&
+    password.value.trim().length !== 0;
 
   const navigate = useNavigate();
 
@@ -36,8 +28,9 @@ const SigninPage = () => {
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    if (!isFormValid) return;
     setIsLoading(true);
-    const data = { email, password };
+    const data = { email: email.value, password: password.value };
     try {
       const response = await signin(data);
       const accessToken = response.data.access_token;
@@ -58,8 +51,8 @@ const SigninPage = () => {
         data-testid="email-input"
         type="email"
         placeholder="이메일을 입력해주세요."
-        error={!emailIsValid}
-        onChange={emailChangeHandler}
+        error={!email.isValid}
+        onChange={email.handleChange}
         disabled={isLoading}
       />
 
@@ -70,8 +63,8 @@ const SigninPage = () => {
         data-testid="password-input"
         type="password"
         placeholder="비밀번호를 입력해주세요."
-        error={!passwordIsValid}
-        onChange={passwordChangeHandler}
+        error={!password.isValid}
+        onChange={password.handleChange}
         disabled={isLoading}
       />
 
@@ -81,7 +74,7 @@ const SigninPage = () => {
         onClick={handleSubmit}
         data-testid="signin-button"
         isFullWidth
-        disabled={isLoading || !isValid}
+        disabled={isLoading || !isFormValid}
       >
         로그인
       </Button>
