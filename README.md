@@ -14,10 +14,7 @@ https://todolist-sosso.vercel.app/signin
 React TypeScript Emotion Context API
 
 ## 주요 기능
-### 1. 회원가입 및 로그인
-
-### 2. Todo 추가
-
-### 3. Todo 수정 및 삭제
-
-### 4. 음악 재생
+1. 회원가입 및 로그인
+2. Todo 추가
+3. Todo 수정 및 삭제
+4. 음악 재생
