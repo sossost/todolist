@@ -1,20 +1,41 @@
-## 프로젝트 소개
-투두리스트 앱입니다.
+# 투두리스트
+<img width="720" alt="image" src="https://github.com/sossost/todolist/assets/110542210/42c4472e-797f-4f6d-9f9b-c6572f5e2966">
 
-## 배포 주소
-https://todolist-sosso.vercel.app/signin
+https://todolist-sosso.vercel.app/
 
 
-## 실행 방법
-``` $ npm install ```
 
-``` $ npm start ```
+### Key Features:
 
-## 활용 기술
-React TypeScript Emotion Context API
+- 회원가입
+- 로그인
+  
+- Todo 입력
+- Todo 수정
+- Todo 삭제
+- Todo 완료
 
-## 주요 기능
-1. 회원가입 및 로그인
-2. Todo 추가
-3. Todo 수정 및 삭제
-4. 음악 재생
+- 음악 재생
+
+### Prerequisites
+
+**Node.js 18.17.0**
+
+### Cloning the repository
+
+```shell
+git clone https://github.com/sossost/todolist.git
+```
+
+### Install packages
+
+```shell
+npm i
+```
+
+
+### Start the app
+
+```shell
+npm start
+```
