@@ -1,4 +1,4 @@
-# 투두리스트
+# Todo list
 <img width="720" alt="image" src="https://github.com/sossost/todolist/assets/110542210/42c4472e-797f-4f6d-9f9b-c6572f5e2966">
 
 https://todolist-sosso.vercel.app/
@@ -7,15 +7,15 @@ https://todolist-sosso.vercel.app/
 
 ### Key Features:
 
-- 회원가입
-- 로그인
+- Sign up
+- Sign in
   
-- Todo 입력
-- Todo 수정
-- Todo 삭제
-- Todo 완료
+- Todo create
+- Todo modify
+- Todo delete
+- Todo complete
 
-- 음악 재생
+- Music playing
 
 ### Prerequisites
 
