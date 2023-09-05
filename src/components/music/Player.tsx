@@ -64,7 +64,7 @@ const Player = () => {
   });
 
   useEffect(() => {
-    sound?.play();
+    sound?.pause();
 
     return () => {
       sound?.unload();
